@@ -67,29 +67,25 @@ def sort_list_of_filenames(ls: list):
     # Turns an imporperly sorted list
     # of numbers into one with proper
     # numerical order
-    # E.g. ['4.svg', '49.svg', '5.svg', '55.svg'] 
+    # E.g. ['4.svg', '49.svg', '5.svg', '55.svg']
     # -> ['4.svg', '5.svg', '49.svg', '55.svg']
 
     # We will first convert the list to a dictionary
     # By extracting the number, placing it as the key
     # and setting the remainder of the element as the value
-    # E.g. ['4.svg', '49.svg', '5.svg', '55.svg'] 
+    # E.g. ['4.svg', '49.svg', '5.svg', '55.svg']
     # -> {4: '.svg', 49: '.svg', 5: '.svg', 55: '.svg'}
     temp_files_dict = {}
     for element in ls:
         number_key = int(get_number_in_word(str(element)))
         string_value = subtract_fromstr(element, str(number_key))
         # Insert the key-value pair into dict
-        temp_files_dict[number_key] = string_value
+        temp_files_dict[number_key] = str(element)#string_value
     # Then we sort the dictionary by key
     sorted_dict = sort_dict_bykeys(temp_files_dict)
     # After that we will merge the sorted dictionary into a list again
     output_list = []
-    for key in sorted_dict:
-        value = sorted_dict[key]
-        merged_key_and_value = str(key) + value
-        output_list.append(merged_key_and_value)
-    return output_list
+    return sorted_dict.values()
 
 def help():
     print(help_string)
